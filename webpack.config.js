@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    mode: 'development',
     module: {
     rules: [
       {
@@ -14,15 +15,23 @@ module.exports = {
         ],
       },
           ],
-  },
+            },
+    devServer: {
+        static: {
+        directory: path.join(__dirname, './public'),
+              },
+        compress: true,
+        port: 9000,
+            },
   
   plugins: [
     new MiniCssExtractPlugin(),
-    new HtmlWebPackPlugin ({
+    new HtmlWebpackPlugin ({
         template: path.resolve(__dirname, './src/index.html'),
         filename: "./index/html"
        })
   ],
   
 };
+
 
